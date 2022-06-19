@@ -14,14 +14,18 @@ const articleSchema = new mongoose.Schema({
   content: String,
 });
 
-const Article = mongoose.Model("Article", articleSchema);
+const Article = mongoose.model("Article", articleSchema);
 
-app.get("/", function(req, res) {
-    Article.find({}, function(err, articleResult) {
-        console.log(articleResult);
-    });
+app.get("/articles", function (req, res) {
+  Article.find({}, function (err, articleResult) {
+    if (!err) {
+      res.send(articleResult);
+    } else {
+      res.send(err);
+    }
+  });
 });
 
 app.listen(3400, function () {
   console.log("Server started on port 3400");
-Article
+});
