@@ -88,6 +88,17 @@ app
         }
       }
     );
+  })
+  .patch(function (req, res) {
+    Article.findOneAndUpdate(
+      { title: req.params.articleTitle },
+      { $set: req.body },
+      function (err) {
+        if (!err) {
+          res.send("Succesfully updated the part in article!");
+        }
+      }
+    );
   });
 
 app.listen(3400, function () {
