@@ -99,6 +99,16 @@ app
         }
       }
     );
+  })
+  .delete(function (req, res) {
+    Article.findOneAndDelete(
+      { title: req.params.articleTitle },
+      function (err) {
+        if (!err) {
+          res.send("Deleted the article successfully");
+        }
+      }
+    );
   });
 
 app.listen(3400, function () {
